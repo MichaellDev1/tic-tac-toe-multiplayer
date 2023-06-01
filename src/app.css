@@ -115,7 +115,7 @@ body {
 .content-messages li {
     list-style: none;
     padding: 7px 15px;
-    max-width: 140px;
+    max-width: 170px;
     border-radius: 20px;
     overflow-wrap: break-word;
     font-size: 17px;
@@ -193,4 +193,54 @@ ul::-webkit-scrollbar-track {
 ul::-webkit-scrollbar-thumb {
     background-color: rgb(177, 177, 177);
     border-radius: 20px;
+}
+
+.form-new-message {
+    display: flex;
+    position: relative;
+}
+
+.input-message {
+    padding: 12px 55px 12px 20px;
+    background-color: rgb(228, 227, 227);
+    border-radius: 25px;
+    border: none;
+    font-size: 15px;
+    flex: 1;
+    color: rgb(19, 19, 19);
+    font-weight: 600;
+}
+
+.not-message {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.input-message:hover {
+    background-color: #fff;
+}
+
+.input-message:focus {
+    background-color: #fff;
+}
+
+.btn-send-msg {
+    position: absolute;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(38, 70, 255);
+    color: #fff;
+    top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn-send-msg:hover {
+    background-color: rgb(102, 125, 255);
+    transition: background-color .4s;
 }
