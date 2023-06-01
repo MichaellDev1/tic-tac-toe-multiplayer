@@ -1,6 +1,7 @@
 body {
     background-color: rgb(15, 15, 15);
     color: #fff;
+    overflow: hidden;
 }
 
 .main-content {
@@ -69,15 +70,16 @@ body {
 }
 
 .content-boards {
-    gap: 8px;
+    gap: 10px;
+    background-color: rgba(83, 82, 82, 0);
     display: grid;
-    grid-template-rows: repeat(3, 100px);
-    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 120px);
+    grid-template-columns: repeat(3, 120px);
 }
 
 .board {
-    background-color: rgba(255, 255, 255, 0.527);
     cursor: pointer;
+    background-color: rgb(61, 61, 61);
     clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
 }
 
@@ -90,4 +92,105 @@ body {
 .square-x {
     clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
     background-color: rgb(255, 82, 82);
+}
+
+.content-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    padding: 0 10px;
+    height: 500px;
+    overflow-y: scroll;
+    flex-grow: 2;
+}
+
+.content-message-input {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    padding: 20px;
+}
+
+.content-messages li {
+    list-style: none;
+    padding: 7px 15px;
+    max-width: 140px;
+    border-radius: 20px;
+    overflow-wrap: break-word;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.messageYou {
+    align-self: flex-end;
+    background-color: rgb(38, 70, 255);
+}
+
+.messageAll {
+    align-self: flex-start;
+    color: rgb(19, 19, 19);
+    background-color: rgb(255, 255, 255);
+}
+
+.content-chat-more-game {
+    display: flex;
+    align-items: center;
+}
+
+.chat {
+    min-width: 400px;
+    height: 100%;
+    margin-left: 20px;
+    right: -400px;
+    position: absolute;
+    z-index: 2;
+    background-color: #181818;
+    display: flex;
+    flex-direction: column;
+    transition: transform .5s;
+}
+
+.content-btn-open-chat {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: block;
+    left: -60px;
+    display: flex;
+    align-items: center;
+}
+
+.title-chat {
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.btn-open-chat {
+    cursor: pointer;
+    transform: rotate(-90deg);
+    margin: none;
+    background-color: rgb(38, 70, 255);
+    color: #fff;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border: none;
+    font-size: 20px;
+    padding: 5px 20px ;
+    font-weight: 500;
+}
+
+
+ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+ul::-webkit-scrollbar-track {
+    background: none;
+}
+
+ul::-webkit-scrollbar-thumb {
+    background-color: rgb(177, 177, 177);
+    border-radius: 20px;
 }

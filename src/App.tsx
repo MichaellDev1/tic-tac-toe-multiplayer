@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { connect } from "socket.io-client";
 import './app.css'
 import TicTacToeContent from './components/TicTacToeContent';
+import ChatGlobal from './components/ChatGlobal';
 
 function App() {
   //Socket
@@ -14,6 +15,7 @@ function App() {
   const [roomEnter, setEnterRoom] = useState<string>('')
   const [enemy, setEnemy] = useState(false)
   const [player, setPlayer] = useState('')
+  const [boards, setBoards] = useState(Array(9).fill(null))
 
   const handleCreateRoom = (): void => {
     const numRandom = Math.floor(Math.random() * 20000).toString()
@@ -28,12 +30,16 @@ function App() {
     })
 
     socket.on('start', () => setEnemy(true))
-    socket.on('disconnectUser', () => setEnemy(false))
+    socket.on('disconnectUser', () => {
+      setEnemy(false)
+      setPlayer('x')
+      setBoards(Array(9).fill(null))
+    })
     socket.on('notAuthorization', () => setFullRoom(true))
     socket.on('turnSelected', (tu) => {
+      console.log(tu)
       setPlayer(tu)
     })
-
   }, [socket])
 
   const handleEnterDoom = (e: React.FormEvent<HTMLFormElement>) => {
@@ -50,17 +56,20 @@ function App() {
 
   return <main className='main-content'>
     {
-      !idRoom && <div className='content-buttons'>
-        <button className='btn' onClick={() => handleCreateRoom()}>Crear Sala</button>
-        <button className='btn' onClick={() => setCreate(!isCreate)}>Unirse a una sala</button>
-        <div className='content-create-sala'>
-          {isCreate && <div className={`content-num-sala`}>
-            <form onSubmit={handleEnterDoom}>
-              <input type="text" autoFocus={isCreate} value={roomEnter} onChange={handleChangeRoom} placeholder='Numero de la sala' />
-              <button>Start</button>
-            </form>
-          </div>}
+      !idRoom && <div style={{ display: 'flex' }} className='content-chat-more-game'>
+        <div className='content-buttons'>
+          <button className='btn' onClick={() => handleCreateRoom()}>Crear Sala</button>
+          <button className='btn' onClick={() => setCreate(!isCreate)}>Unirse a una sala</button>
+          <div className='content-create-sala'>
+            {isCreate && <div className={`content-num-sala`}>
+              <form onSubmit={handleEnterDoom}>
+                <input type="text" autoFocus={isCreate} value={roomEnter} onChange={handleChangeRoom} placeholder='Numero de la sala' />
+                <button>Start</button>
+              </form>
+            </div>}
+          </div>
         </div>
+        <ChatGlobal socket={socket} />
       </div>
     }
 
@@ -68,7 +77,7 @@ function App() {
       idRoom
       && !enemy && !isFullRoom
       && <div style={{ textAlign: 'center' }}>
-        <h3 className='text-time'>Esperando un convatiente...</h3>
+        <h3 className='text-time'>Esperando a un convatiente...</h3>
         <span>Id de la sala: {idRoom}</span>
       </div>
     }
@@ -82,13 +91,10 @@ function App() {
         }}>Back</button>
       </div>
     }
-
-
+  
     {
-      enemy && !isFullRoom && <TicTacToeContent socket={socket} player={player} idRoom={idRoom} />
+      enemy && !isFullRoom && <TicTacToeContent socket={socket} player={player} idRoom={idRoom} setBoards={setBoards} boards={boards} />
     }
-
-
   </main>
 }
 
