@@ -13,6 +13,7 @@ function App() {
   const [idRoom, setIdRoom] = useState<null | string>(null)
   const [roomEnter, setEnterRoom] = useState<string>('')
   const [enemy, setEnemy] = useState(false)
+  const [player, setPlayer] = useState('')
 
   const handleCreateRoom = (): void => {
     const numRandom = Math.floor(Math.random() * 20000).toString()
@@ -26,17 +27,13 @@ function App() {
       setEnemy(true)
     })
 
-    socket.on('start', (start) => {
-      setEnemy(true)
+    socket.on('start', () => setEnemy(true))
+    socket.on('disconnectUser', () => setEnemy(false))
+    socket.on('notAuthorization', () => setFullRoom(true))
+    socket.on('turnSelected', (tu) => {
+      setPlayer(tu)
     })
 
-    socket.on('disconnectUser', (me) => {
-      setEnemy(false)
-    })
-
-    socket.on('notAuthorization', (err) => {
-      setFullRoom(true)
-    })
   }, [socket])
 
   const handleEnterDoom = (e: React.FormEvent<HTMLFormElement>) => {
@@ -76,8 +73,6 @@ function App() {
       </div>
     }
 
-
-
     {
       isFullRoom && idRoom && <div>
         <h3>Full room, plece select other room</h3>
@@ -88,8 +83,9 @@ function App() {
       </div>
     }
 
+
     {
-      enemy && !isFullRoom && <TicTacToeContent socket={socket} idRoom={idRoom} />
+      enemy && !isFullRoom && <TicTacToeContent socket={socket} player={player} idRoom={idRoom} />
     }
 
 
