@@ -1,0 +1,93 @@
+body {
+    background-color: rgb(15, 15, 15);
+    color: #fff;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.content-buttons {
+    display: flex;
+    flex-direction: column;
+    min-width: 340px;
+    position: relative;
+}
+
+.btn,
+.content-num-sala form button {
+    background: rgb(60, 57, 255);
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    border: none;
+    z-index: 2;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.content-num-sala {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    justify-content: center;
+    width: 100%;
+}
+
+.content-num-sala form {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-num-sala form,
+.content-num-sala form button,
+.content-num-sala form input {
+    width: 100%;
+}
+
+.content-num-sala form input {
+    padding: 7px 5px;
+    font-size: 13px;
+}
+
+.content-num-sala form button {
+    background: rgb(252, 162, 26);
+    z-index: 0;
+}
+
+.btn:hover {
+    background: rgb(140, 138, 255);
+    transition: background-color .2s;
+}
+
+.text-time {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.content-boards {
+    gap: 8px;
+    display: grid;
+    grid-template-rows: repeat(3, 100px);
+    grid-template-columns: repeat(3, 100px);
+}
+
+.board {
+    background-color: rgba(255, 255, 255, 0.527);
+    cursor: pointer;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+}
+
+.circle {
+    border-radius: 50%;
+    clip-path: circle(50% at 50% 50%);
+    background-color: rgb(12, 109, 255);
+}
+
+.cross {
+    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+    background-color: rgb(255, 82, 82);
+}
