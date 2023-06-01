@@ -28,7 +28,9 @@ export default function TicTacToeContent({ socket, idRoom, player, boards, setBo
 
   const verifyWin = (boardsVerify: Array<null | string>) => {
     winningPositions.forEach(([a, b, c]) => {
-      if (boardsVerify[a] !== null && boardsVerify[a] == boardsVerify[b] && boardsVerify[b] == boardsVerify[c]) {
+      if (boardsVerify[a] !== null
+        && boardsVerify[a] == boardsVerify[b]
+        && boardsVerify[b] == boardsVerify[c]) {
         setWin(boardsVerify[a])
       }
     })
@@ -60,7 +62,7 @@ export default function TicTacToeContent({ socket, idRoom, player, boards, setBo
 
   return <div className='content-chat-more-game'>
     <div>
-      <h3>{!win
+      <h3 className='turn-selected'>{!win
         ? player == turn
           ? 'Your turn'
           : 'Enemy turn'

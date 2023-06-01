@@ -3,6 +3,7 @@ import { connect } from "socket.io-client";
 import './app.css'
 import TicTacToeContent from './components/TicTacToeContent';
 import ChatGlobal from './components/ChatGlobal';
+import Spinner from './Spinner';
 
 function App() {
   //Socket
@@ -37,7 +38,6 @@ function App() {
     })
     socket.on('notAuthorization', () => setFullRoom(true))
     socket.on('turnSelected', (tu) => {
-      console.log(tu)
       setPlayer(tu)
     })
   }, [socket])
@@ -76,9 +76,12 @@ function App() {
     {
       idRoom
       && !enemy && !isFullRoom
-      && <div style={{ textAlign: 'center' }}>
+      && <div style={{ textAlign: 'center', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
         <h3 className='text-time'>Esperando a un convatiente...</h3>
         <span>Id de la sala: {idRoom}</span>
+        <div className='content-spinner'>
+          <Spinner />
+        </div>
       </div>
     }
 
@@ -91,7 +94,7 @@ function App() {
         }}>Back</button>
       </div>
     }
-  
+
     {
       enemy && !isFullRoom && <TicTacToeContent socket={socket} player={player} idRoom={idRoom} setBoards={setBoards} boards={boards} />
     }

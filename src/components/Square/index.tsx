@@ -1,8 +1,6 @@
-import React from 'react'
 import classNames from 'classnames'
 
 export default function Square({ handlePlayBoard, value, inx }: any) {
-
     let squareClass = classNames({
         board: true,
         [`square-${value}`]: value !== null
