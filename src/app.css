@@ -121,22 +121,20 @@ body {
     flex-direction: column;
     gap: 10px;
     height: 100%;
-    padding: 0 10px;
     height: 500px;
     overflow-y: scroll;
     flex-grow: 2;
+    margin-top: 20px;
 }
 
 .content-message-input {
     display: flex;
     flex-direction: column;
     flex-grow: 2;
-    padding: 12px 20px;
 }
 
 .content-messages li {
     list-style: none;
-    padding: 7px 15px;
     max-width: 170px;
     border-radius: 5px;
     overflow-wrap: break-word;
@@ -181,6 +179,7 @@ body {
     flex-direction: column;
     transition: transform .5s;
     z-index: 3;
+    padding: 20px;
 }
 
 .content-btn-open-chat {
@@ -194,7 +193,6 @@ body {
 }
 
 .title-chat {
-    padding: 20px 30px;
     font-size: 20px;
     font-weight: 700;
 }
@@ -384,5 +382,8 @@ ul::-webkit-scrollbar-thumb {
     }
     .menuOpen {
         transform: translateX(-280px);
+    }
+    .content-message-input {
+        
     }
 }
