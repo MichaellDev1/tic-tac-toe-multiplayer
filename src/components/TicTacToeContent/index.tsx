@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import Square from '../Square'
 import { Socket } from 'socket.io-client';
-import ChatSingle from '../ChatSingle';
 import winSoundEffect from '../../../asset/sound/win.mp3'
 import gameOverSound from '../../../asset/sound/gameover.mp3'
+import Chat from '../Chat';
 
 
 const winningPositions = [
@@ -109,7 +109,7 @@ export default function TicTacToeContent({ socket, idRoom, player, boards, setBo
 
       <div className='content-reset-and-game-turn'>
         <div className='content-info-turn'>
-          <span>Your: <span className={player == 'x' ? 'player-cross' : 'player-circle'}>{player}</span></span>
+          <span>You: <span className={player == 'x' ? 'player-cross' : 'player-circle'}>{player}</span></span>
           <span> Enemy: <span className={player == 'x' ? 'player-circle' : 'player-cross'}>{player == 'x' ? 'O' : 'X'}</span></span>
         </div>
 
@@ -124,8 +124,9 @@ export default function TicTacToeContent({ socket, idRoom, player, boards, setBo
 
     </div>
 
-    <ChatSingle
+    <Chat
       socket={socket}
-      idRoom={idRoom} />
+      idRoom={idRoom} 
+      isGlobal={false} />
   </div>
 }

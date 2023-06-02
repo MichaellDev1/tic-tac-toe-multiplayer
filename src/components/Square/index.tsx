@@ -5,7 +5,6 @@ export default function Square({ handlePlayBoard, value, inx }: any) {
         board: true,
         [`square-${value}`]: value !== null
     })
-
     return <div className={squareClass} onClick={() => handlePlayBoard(inx)}>
     </div>
 }

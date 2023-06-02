@@ -4,7 +4,9 @@ import TicTacToeContent from './components/TicTacToeContent';
 import ChatGlobal from './components/ChatGlobal';
 import Spinner from './Spinner';
 import backgroundSvg from '../asset/svg/Sprinkle.ffea3143.svg'
+import ModelRoom from './components/ModalRoom';
 import './app.css'
+import Chat from './components/Chat';
 
 function App() {
   //Socket
@@ -58,20 +60,22 @@ function App() {
   return <main className='main-content'>
     <img src={backgroundSvg} alt="" style={{ width: '100%', minHeight: '118vh', objectFit: 'cover', position: 'absolute', zIndex: '-1' }} />
     {
-      !idRoom && <div style={{ display: 'flex' }} className='content-chat-more-game'>
+      !idRoom
+      && <div style={{ display: 'flex' }} className='content-chat-more-game'>
         <div className='content-buttons'>
           <button className='btn' onClick={() => handleCreateRoom()}>Crear Sala</button>
-          <button className='btn' onClick={() => setCreate(!isCreate)}>Unirse a una sala</button>
+          <button className='btn btn-two' onClick={() => setCreate(!isCreate)}>Unirse a una sala</button>
           <div className='content-create-sala'>
-            {isCreate && <div className={`content-num-sala`}>
-              <form onSubmit={handleEnterDoom}>
-                <input type="text" autoFocus={isCreate} value={roomEnter} onChange={handleChangeRoom} placeholder='Numero de la sala' />
-                <button>Start</button>
-              </form>
-            </div>}
+            {isCreate
+              && <ModelRoom
+                handleChangeRoom={handleChangeRoom}
+                handleEnterDoom={handleEnterDoom}
+                isCreate={isCreate}
+                roomEnter={roomEnter}
+                setCreate={setCreate} />}
           </div>
         </div>
-        <ChatGlobal socket={socket} />
+        <Chat socket={socket} idRoom={idRoom} isGlobal={true} />
       </div>
     }
 
@@ -79,8 +83,8 @@ function App() {
       idRoom
       && !enemy && !isFullRoom
       && <div style={{ textAlign: 'center', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-        <h3 className='text-time'>Esperando a un convatiente...</h3>
-        <span>Id de la sala: {idRoom}</span>
+        <h3 className='text-time'>Esperando a un oponente...</h3>
+        <span>Id de sala: {idRoom}</span>
         <div className='content-spinner'>
           <Spinner />
         </div>
@@ -97,9 +101,7 @@ function App() {
       </div>
     }
 
-    {
-      enemy && !isFullRoom && <TicTacToeContent socket={socket} player={player} idRoom={idRoom} setBoards={setBoards} boards={boards} />
-    }
+    {enemy && !isFullRoom && <TicTacToeContent socket={socket} player={player} idRoom={idRoom} setBoards={setBoards} boards={boards} />}
   </main>
 }
 

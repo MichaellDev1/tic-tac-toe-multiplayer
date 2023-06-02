@@ -1,50 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import sound from '../../../asset/sound/soundNewMessage.mp3'
+import React from 'react'
+import useMessage from '../../hooks/useMessage'
 
-export default function ChatSingle({ socket, idRoom }) {
-  const [message, setMessage] = useState<string>('')
-  const [messages, setMessages] = useState<object[]>([])
+export default function Chat({ socket, idRoom, isGlobal = false }: any) {
+  const { message, messages, setMessage, setMessages, showMenu, setShowMenu } = useMessage({ socket, global: isGlobal })
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
+
     if (message.trim() !== '') {
       setMessages(lastMessages => [...lastMessages, {
         from: 'you',
         message
       }])
-      socket.emit('createMessageSingle', message, idRoom)
+
+      socket.emit(isGlobal
+        ? 'createMessageGlobal'
+        : 'createMessageSingle', message, idRoom)
+
       setMessage('')
     }
+  }
+
+  const handleShowMenu = () => {
+    setShowMenu(!showMenu)
   }
 
   const handleChangeMessage = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setMessage(e.target.value)
   }
 
-  useEffect(() => {
-    socket.on('newMessageSingle', (message: string) => {
-      const audio = new Audio(sound)
-      audio.play()
-      setMessages(lastMessages => [...lastMessages, {
-        from: 'he',
-        message
-      }])
-    })
-
-    return () => socket.off('newMessageSingle')
-  }, [socket])
-
-  const [showMenu, setShowMenu] = useState(false)
-
-  const handleShowMenu = () => {
-    setShowMenu(!showMenu)
-  }
-
   return <div className='chat' style={{ transform: `translateX(${showMenu ? '-350px' : '0px'})` }}>
     <div className="content-btn-open-chat">
       <button className="btn-open-chat" onClick={handleShowMenu}>Chat</button>
     </div>
-    <h3 className="title-chat">Single chat</h3>
+    <h3 className="title-chat">{isGlobal ? 'Chat global' : 'Chat single'}</h3>
 
     <div className="content-message-input">
       <ul className='content-messages'>
