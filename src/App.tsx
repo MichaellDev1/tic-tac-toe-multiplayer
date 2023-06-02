@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import { connect } from "socket.io-client";
-import './app.css'
 import TicTacToeContent from './components/TicTacToeContent';
 import ChatGlobal from './components/ChatGlobal';
 import Spinner from './Spinner';
+import backgroundSvg from '../asset/svg/Sprinkle.ffea3143.svg'
+import './app.css'
 
 function App() {
   //Socket
@@ -55,6 +56,7 @@ function App() {
   }
 
   return <main className='main-content'>
+    <img src={backgroundSvg} alt="" style={{ width: '100%', minHeight: '118vh', objectFit: 'cover', position: 'absolute', zIndex: '-1' }} />
     {
       !idRoom && <div style={{ display: 'flex' }} className='content-chat-more-game'>
         <div className='content-buttons'>

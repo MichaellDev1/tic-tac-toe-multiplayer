@@ -41,7 +41,7 @@ export default function ChatGlobal({ socket }) {
     setShowMenu(!showMenu)
   }
 
-  return <div className="chat" style={{ transform: `translateX(${showMenu ? '-400px' : '0px'})` }}>
+  return <div className="chat" style={{ transform: `translateX(${showMenu ? '-350px' : '0px'})` }}>
     <div className="content-btn-open-chat">
       <button className="btn-open-chat" onClick={handleShowMenu}>Chat</button>
     </div>

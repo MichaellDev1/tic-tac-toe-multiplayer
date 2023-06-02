@@ -16,6 +16,7 @@ body {
     flex-direction: column;
     min-width: 340px;
     position: relative;
+    gap: 12px;
 }
 
 .btn,
@@ -23,10 +24,11 @@ body {
     background: rgb(60, 57, 255);
     color: #fff;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 16px;
     border: none;
+    border-radius: 36px;
     z-index: 2;
-    padding: 12px;
+    padding: 13px;
     cursor: pointer;
 }
 
@@ -149,10 +151,10 @@ body {
 }
 
 .chat {
-    min-width: 400px;
+    min-width: 350px;
     height: 100%;
     margin-left: 20px;
-    right: -400px;
+    right: -350px;
     position: absolute;
     z-index: 2;
     background-color: #181818;
@@ -166,13 +168,13 @@ body {
     top: 0;
     bottom: 0;
     display: block;
-    left: -58px;
+    left: -64px;
     display: flex;
     align-items: center;
 }
 
 .title-chat {
-    padding: 20px;
+    padding: 20px 30px;
     font-size: 20px;
     font-weight: 700;
 }
@@ -183,8 +185,8 @@ body {
     margin: none;
     background-color: rgb(255 55 55);
     color: #fff;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    border-top-right-radius: 42px;
+    border-top-left-radius: 42px;
     border: none;
     font-size: 20px;
     padding: 5px 20px;
@@ -248,4 +250,32 @@ ul::-webkit-scrollbar-thumb {
     font-size: 20px;
     margin-bottom: 20px;
     font-weight: 500;
+}
+
+.content-reset-and-game-turn {
+    margin-top: 20px;
+}
+
+.content-reset-and-game-turn .content-info-turn {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-info-turn span {
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    gap: 5px;
+}
+
+.content-info-turn span span {
+    text-transform: uppercase;
+}
+
+.player-circle {
+    color: rgb(0, 132, 255);
+}
+
+.player-cross {
+    color: rgb(255, 82, 82);
 }
