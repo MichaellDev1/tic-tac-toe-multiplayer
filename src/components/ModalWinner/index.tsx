@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom"
 
-export default function ModalWinner({ win, handleResetGame, empate, player }) {
+export default function ModalWinner({ win, handleResetGame, empate, player }: any) {
     return win || empate ? ReactDOM.createPortal(<div className="modal-winner">
         <div className="modal-winner-or-empate">
             {win
@@ -14,5 +14,5 @@ export default function ModalWinner({ win, handleResetGame, empate, player }) {
                 <button>Exit</button>
             </div> : null}
         </div>
-    </div>, document.getElementById('modals')) : null
+    </div>, document.getElementById('modals') as HTMLElement) : null
 }

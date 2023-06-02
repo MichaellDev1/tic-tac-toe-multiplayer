@@ -36,7 +36,7 @@ export default function Chat({ socket, idRoom, isGlobal = false }: any) {
       <ul className='content-messages'>
         {
           messages.length > 0
-            ? messages.map(msg => (
+            ? messages.map((msg: any) => (
               <li className={`${msg.from == 'you' ? 'messageYou' : 'messageAll'}`}>
                 <div>
                   {msg.message}
