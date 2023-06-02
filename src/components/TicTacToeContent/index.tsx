@@ -16,9 +16,10 @@ interface Props {
   player: string | ''
   setBoards: React.Dispatch<React.SetStateAction<any[]>>,
   boards: Array<null | string>
+  handleExitRoom: Function
 }
 
-export default function TicTacToeContent({ socket, idRoom, player, boards, setBoards }: Props) {
+export default function TicTacToeContent({ socket, idRoom, player, boards, setBoards, handleExitRoom }: Props) {
   const [turn, setTurn] = useState<string>('x')
   const [win, setWin] = useState<null | string>(null)
   const [empate, setEmpate] = useState<boolean>(false)
@@ -60,6 +61,7 @@ export default function TicTacToeContent({ socket, idRoom, player, boards, setBo
       setBoards(newSquares);
     })
   }, [socket])
+
 
   const handlePlayBoard = (inx: number) => {
     if (boards[inx] == null && turn == player && !win) {
@@ -114,7 +116,8 @@ export default function TicTacToeContent({ socket, idRoom, player, boards, setBo
           empate={empate}
           handleResetGame={handleResetGame}
           player={player}
-          win={win} />
+          win={win}
+          handleExitRoom={handleExitRoom} />
 
       </div>
     </div>

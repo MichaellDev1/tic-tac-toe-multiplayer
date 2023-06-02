@@ -9,6 +9,9 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
 }
 
 .content-buttons {
@@ -18,6 +21,8 @@ body {
     position: relative;
     gap: 12px;
 }
+
+
 
 .btn,
 .content-num-sala form button {
@@ -126,7 +131,7 @@ body {
     display: flex;
     flex-direction: column;
     flex-grow: 2;
-    padding: 20px;
+    padding: 12px 20px;
 }
 
 .content-messages li {
@@ -165,16 +170,17 @@ body {
 }
 
 .chat {
-    min-width: 350px;
+    min-width: 290px;
     height: 100%;
     margin-left: 20px;
-    right: -350px;
+    right: -320px;
     position: absolute;
     z-index: 2;
     background-color: #181818;
     display: flex;
     flex-direction: column;
     transition: transform .5s;
+    z-index: 3;
 }
 
 .content-btn-open-chat {
@@ -197,7 +203,7 @@ body {
     cursor: pointer;
     transform: rotate(-90deg);
     margin: none;
-    background-color: rgb(255 55 55);
+    background-color: rgb(11 120 255);
     color: #fff;
     border-top-right-radius: 44px;
     border-top-left-radius: 44px;
@@ -350,4 +356,21 @@ ul::-webkit-scrollbar-thumb {
     cursor: pointer;
     color: #fff;
     margin-top: 20px;
+}
+
+@media (max-width: 700px) {
+    .content-boards {
+        grid-template-rows: repeat(3, 80px);
+        grid-template-columns: repeat(3, 80px);
+    }
+
+    .content-buttons {
+        padding: 0 32px;
+    }
+    .content-num-sala  {
+        min-width: 320px;
+    }
+    .modal-winner-or-empate {
+        min-width: 320px;
+    }
 }

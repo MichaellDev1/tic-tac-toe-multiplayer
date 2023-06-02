@@ -58,6 +58,11 @@ function App() {
     setEnterRoom(e.target.value)
   }
 
+  const handleExitRoom = () => {
+    setIdRoom(null)
+    setEnemy(false)
+  }
+
   return <main className='main-content'>
     <img src={backgroundSvg} alt="" style={{ width: '100%', minHeight: '118vh', objectFit: 'cover', position: 'absolute', zIndex: '-1' }} />
     {
@@ -102,7 +107,7 @@ function App() {
       </div>
     }
 
-    {enemy && !isFullRoom && <TicTacToeContent socket={socket} player={player} idRoom={idRoom} setBoards={setBoards} boards={boards} />}
+    {enemy && !isFullRoom && <TicTacToeContent socket={socket} player={player} idRoom={idRoom} setBoards={setBoards} boards={boards} handleExitRoom={handleExitRoom} />}
   </main>
 }
 

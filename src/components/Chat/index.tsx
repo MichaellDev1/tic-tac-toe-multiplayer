@@ -26,7 +26,7 @@ export default function Chat({ socket, idRoom, isGlobal = false }: any) {
     setMessage(e.target.value)
   }
 
-  return <div className='chat' style={{ transform: `translateX(${showMenu ? '-350px' : '0px'})` }}>
+  return <div className='chat' style={{ transform: `translateX(${showMenu ? '-320px' : '0px'})` }}>
     <div className="content-btn-open-chat">
       <button className="btn-open-chat" onClick={handleShowMenu}>Chat</button>
     </div>
