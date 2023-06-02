@@ -30,9 +30,8 @@ export default function Chat({ socket, idRoom, isGlobal = false }: any) {
     <div className="content-btn-open-chat">
       <button className="btn-open-chat" onClick={handleShowMenu}>Chat</button>
     </div>
-    <h3 className="title-chat">{isGlobal ? 'Chat global' : 'Chat single'}</h3>
-
     <div className="content-message-input">
+      <h3 className="title-chat">{isGlobal ? 'Chat global' : 'Chat single'}</h3>
       <ul className='content-messages'>
         {
           messages.length > 0

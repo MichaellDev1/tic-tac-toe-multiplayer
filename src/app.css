@@ -142,6 +142,11 @@ body {
     font-weight: 600;
 }
 
+.messageYou,
+.messageAll {
+    padding: 8px 15px;
+}
+
 .messageYou {
     align-self: flex-end;
     background-color: rgb(38, 70, 255);
@@ -370,20 +375,23 @@ ul::-webkit-scrollbar-thumb {
     .content-buttons {
         padding: 0 32px;
     }
-    .content-num-sala  {
+
+    .content-num-sala {
         min-width: 320px;
     }
+
     .modal-winner-or-empate {
         min-width: 320px;
     }
+
     .chat {
         right: -290px;
         width: 190px;
     }
+
     .menuOpen {
         transform: translateX(-280px);
     }
-    .content-message-input {
-        
-    }
+
+    .content-message-input {}
 }
