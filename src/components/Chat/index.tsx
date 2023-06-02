@@ -2,7 +2,7 @@ import React from 'react'
 import useMessage from '../../hooks/useMessage'
 
 export default function Chat({ socket, idRoom, isGlobal = false }: any) {
-  const { message, messages, setMessage, setMessages, showMenu, setShowMenu } = useMessage({ socket, global: isGlobal })
+  const { message, messages, setMessage, setMessages, showMenu, setShowMenu, refElement } = useMessage({ socket, global: isGlobal })
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
@@ -26,13 +26,13 @@ export default function Chat({ socket, idRoom, isGlobal = false }: any) {
     setMessage(e.target.value)
   }
 
-  return <div className={`chat ${showMenu ? 'menuHidden' : 'menuOpen'}`} >
+  return <div className={`chat ${showMenu ? 'menuOpen' : 'menuHidden'}`} >
     <div className="content-btn-open-chat">
       <button className="btn-open-chat" onClick={handleShowMenu}>Chat</button>
     </div>
     <div className="content-message-input">
       <h3 className="title-chat">{isGlobal ? 'Chat global' : 'Chat single'}</h3>
-      <ul className='content-messages'>
+      <ul className='content-messages' ref={refElement}>
         {
           messages.length > 0
             ? messages.map((msg: any) => (
