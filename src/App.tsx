@@ -1,16 +1,17 @@
 import { useEffect, useMemo, useState } from 'react'
 import { connect } from "socket.io-client";
+
 import TicTacToeContent from './components/TicTacToeContent';
-import ChatGlobal from './components/ChatGlobal';
 import Spinner from './Spinner';
 import backgroundSvg from '../asset/svg/Sprinkle.ffea3143.svg'
 import ModelRoom from './components/ModalRoom';
-import './app.css'
 import Chat from './components/Chat';
+
+import './app.css'
 
 function App() {
   //Socket
-  const socket = useMemo(() => connect("http://localhost:3000"), [])
+  const socket = useMemo(() => connect(import.meta.env.VITE_API_SERVER), [])
 
   //States
   const [isCreate, setCreate] = useState(false)

@@ -6,17 +6,14 @@ export default function Chat({ socket, idRoom, isGlobal = false }: any) {
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
-
     if (message.trim() !== '') {
       setMessages(lastMessages => [...lastMessages, {
         from: 'you',
         message
       }])
-
       socket.emit(isGlobal
         ? 'createMessageGlobal'
         : 'createMessageSingle', message, idRoom)
-
       setMessage('')
     }
   }
@@ -38,11 +35,15 @@ export default function Chat({ socket, idRoom, isGlobal = false }: any) {
     <div className="content-message-input">
       <ul className='content-messages'>
         {
-          messages.length > 0 ? messages.map(msg => <li className={`${msg.from == 'you' ? 'messageYou' : 'messageAll'}`}>
-            <div>
-              {msg.message}
-            </div>
-          </li>) : <h3 className='not-message'>Aun no hay mensajes...</h3>
+          messages.length > 0
+            ? messages.map(msg => (
+              <li className={`${msg.from == 'you' ? 'messageYou' : 'messageAll'}`}>
+                <div>
+                  {msg.message}
+                </div>
+              </li>
+            ))
+            : <h3 className='not-message'>Aun no hay mensajes...</h3>
         }
       </ul>
       <form action="" onSubmit={handleSendMessage} className="form-new-message" >

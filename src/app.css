@@ -26,7 +26,7 @@ body {
     font-weight: 600;
     font-size: 16px;
     border: none;
-    border-radius: 36px;
+    border-radius: 10px;
     z-index: 2;
     padding: 12px;
     cursor: pointer;
@@ -34,15 +34,17 @@ body {
 
 
 .content-num-sala {
-    display: flex;
-    align-items: center;
+    background-color: rgb(28 28 28);
     position: absolute;
+    color: #fff;
+    padding: 20px;
+    min-height: 300px;
+    border-radius: 20px;
+    min-width: 400px;
+    display: flex;
     justify-content: center;
-    width: 100%;
-    max-width: 450px;
-    background-color: rgb(33 33 33);
-    padding: 50px 20px;
-    border-radius: 89px;
+    align-items: center;
+    flex-direction: column;
 }
 
 .content-num-sala form {
@@ -61,12 +63,7 @@ body {
     padding: 14px 15px;
     font-size: 13px;
     border: none;
-    border-radius: 27px;
-}
-
-.content-num-sala form button {
-    background: rgb(255 58 58);
-    z-index: 0;
+    border-radius: 10px;
 }
 
 .btn:hover {
@@ -312,4 +309,45 @@ ul::-webkit-scrollbar-thumb {
     justify-content: center;
     align-items: center;
     z-index: 2;
+}
+
+.modal-winner {
+    position: absolute;
+    top: 0%;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.modal-winner-or-empate {
+    background-color: rgb(28 28 28);
+    color: #fff;
+    padding: 20px;
+    min-height: 300px;
+    border-radius: 20px;
+    min-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-winner-or-empate h3 {
+    font-size: 29px;
+}
+
+.content-button-modal {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-winner-or-empate button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    margin-top: 20px;
 }
