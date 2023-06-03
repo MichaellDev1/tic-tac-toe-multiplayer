@@ -121,12 +121,12 @@ body {
     flex-direction: column;
     gap: 10px;
     overflow-y: scroll;
-    flex-grow: 2;
-    height: 400px;
-    margin-top: 20px;
+    padding: 20px 0;
     margin-bottom: 8px;
-    flex-shrink: 0;
+    flex-grow: 1;
+    height: 400px;
 }
+
 
 .content-message-input {
     display: flex;
@@ -210,12 +210,14 @@ body {
     margin: none;
     background-color: rgb(11 120 255);
     color: #fff;
-    border-top-right-radius: 7px;
-    border-top-left-radius: 7px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
     border: none;
     font-size: 17px;
     padding: 5px 20px;
     font-weight: 500;
+    position: relative;
+    top: -180px;
 }
 
 
@@ -365,7 +367,7 @@ ul::-webkit-scrollbar-thumb {
 }
 
 .menuOpen {
-    transform: translateX(-320px);
+    transform: translateX(-299px);
 }
 
 @media (max-width: 700px) {
@@ -375,7 +377,7 @@ ul::-webkit-scrollbar-thumb {
     }
 
     .content-buttons {
-        padding: 0 32px;
+        padding: 0 40px;
     }
 
     .content-num-sala {
@@ -389,10 +391,19 @@ ul::-webkit-scrollbar-thumb {
     .chat {
         right: -290px;
         width: 190px;
-        height: 100vh;
+        height: 100%;
+    }
+
+    .content-ul-lis {
+        min-height: 300px;
+        max-height: 400px;
     }
 
     .menuOpen {
         transform: translateX(-289px);
+    }
+
+    .btn-open-chat {
+        top: -225px;
     }
 }

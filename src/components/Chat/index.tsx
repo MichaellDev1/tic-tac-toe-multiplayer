@@ -45,6 +45,7 @@ export default function Chat({ socket, idRoom, isGlobal = false }: any) {
             : <h3 className='not-message'>Aun no hay mensajes...</h3>
         }
       </ul>
+
       <form action="" onSubmit={handleSendMessage} className="form-new-message" >
         <input type="text" className="input-message" onChange={handleChangeMessage} value={message} placeholder='Message' />
         <button className="btn-send-msg"></button>
