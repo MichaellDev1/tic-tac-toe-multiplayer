@@ -120,16 +120,19 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 100%;
     overflow-y: scroll;
     flex-grow: 2;
+    height: 400px;
     margin-top: 20px;
+    margin-bottom: 8px;
+    flex-shrink: 0;
 }
 
 .content-message-input {
     display: flex;
     flex-direction: column;
     flex-grow: 2;
+    flex-shrink: 0;
     padding: 20px;
 }
 
@@ -176,7 +179,7 @@ body {
     min-width: 290px;
     height: 100%;
     margin-left: 20px;
-    right: -320px;
+    right: -299px;
     position: absolute;
     z-index: 2;
     background-color: #181818;
@@ -207,8 +210,8 @@ body {
     margin: none;
     background-color: rgb(11 120 255);
     color: #fff;
-    border-top-right-radius: 44px;
-    border-top-left-radius: 44px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
     border: none;
     font-size: 17px;
     padding: 5px 20px;
@@ -235,7 +238,7 @@ ul::-webkit-scrollbar-thumb {
 }
 
 .input-message {
-    padding: 12px 55px 12px 20px;
+    padding: 10px 55px 10px 15px;
     background-color: rgb(228, 227, 227);
     border-radius: 5px;
     border: none;
@@ -243,7 +246,7 @@ ul::-webkit-scrollbar-thumb {
     flex: 1;
     color: rgb(19, 19, 19);
     width: 100%;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .not-message {

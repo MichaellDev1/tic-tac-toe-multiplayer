@@ -6,14 +6,12 @@ export default function useMessage({ socket, global = false }: any) {
   const [message, setMessage] = useState<string>('')
   const [messages, setMessages] = useState<object[]>([])
   const [showMenu, setShowMenu] = useState(false)
-  const refElement = useRef()
+  const refElement:any = useRef()
 
   useEffect(() => {
-
     if (refElement.current) {
       refElement.current.scrollTop = refElement.current.scrollHeight;
       socket.on(global ? 'newMessageGlobal' : 'newMessageSingle', (message: string) => {
-
         const audio = new Audio(sound)
         audio.play()
         setMessages(lastMessages => [...lastMessages, {
@@ -21,7 +19,10 @@ export default function useMessage({ socket, global = false }: any) {
           message
         }])
       })
-      return () => socket.off(global ? 'newMessageGlobal' : 'newMessageSingle')
+      return () =>
+        socket.off(global
+          ? 'newMessageGlobal'
+          : 'newMessageSingle')
     }
   }, [socket, messages])
 
