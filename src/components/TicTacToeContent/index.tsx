@@ -52,11 +52,6 @@ export default function TicTacToeContent({ socket, idRoom, player, boards, setBo
   useEffect(() => {
     socket.on('gameEnemy', (turnSelected: string, newSquares) => {
       setTurn(turnSelected)
-
-      if (player == turnSelected) {
-        soundActive(winSoundEffect)
-      }
-
       verifyWin(newSquares)
       setBoards(newSquares);
     })

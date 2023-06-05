@@ -76,11 +76,6 @@ body {
     transition: background-color .2s;
 }
 
-.text-time {
-    font-size: 16px;
-    font-weight: 500;
-}
-
 .content-boards {
     gap: 10px;
     background-color: rgba(83, 82, 82, 0);
@@ -368,6 +363,38 @@ ul::-webkit-scrollbar-thumb {
 
 .menuOpen {
     transform: translateX(-299px);
+}
+
+.content-full-room {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-back {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    margin-top: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.btn-back:hover span {
+    transform: translateX(-10px);
+    transition: transform .2s;
+}
+
+.btn-back span {
+    display: flex;
+    align-items: center;
+}
+
+.text-time,
+.full-room-title {
+    font-size: 18px;
+    font-weight: 500;
 }
 
 @media (max-width: 700px) {

@@ -8,6 +8,7 @@ import ModelRoom from './components/ModalRoom';
 import Chat from './components/Chat';
 
 import './app.css'
+import ArrowIcon from './components/Icon';
 
 function App() {
   //Socket
@@ -98,12 +99,16 @@ function App() {
     }
 
     {
-      isFullRoom && idRoom && <div>
-        <h3>Full room, plece select other room</h3>
-        <button onClick={() => {
-          setIdRoom(null)
-          setFullRoom(false)
-        }}>Back</button>
+      isFullRoom && idRoom && <div className='content-full-room'>
+        <h3 className='full-room-title'>Full room, pleace select other room</h3>
+        <div>
+          <button onClick={() => {
+            setIdRoom(null)
+            setFullRoom(false)
+          }} className='btn-back'>
+            <span><ArrowIcon /></span>
+            Back</button>
+        </div>
       </div>
     }
 
