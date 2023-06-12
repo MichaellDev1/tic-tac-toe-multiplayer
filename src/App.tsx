@@ -34,21 +34,12 @@ function App() {
     <main className='main-content'>
       <img src={backgroundSvg} alt="svg image background" className='background-svg' />
 
-      {!idRoom 
-      && <HomeGame />}
-      {idRoom 
-        && !enemy 
-        && !isFullRoom 
-        && <EnemyLoading />}
-  
-      {isFullRoom 
-        && idRoom 
-        && <RoomFull />}
+      {!idRoom&& <HomeGame />}
+      {idRoom && !enemy && !isFullRoom && <EnemyLoading />}
 
-      {enemy 
-        && !isFullRoom 
-        && <TicTacToeContent />}
-  
+      {isFullRoom && idRoom && <RoomFull />}
+      {enemy && !isFullRoom && <TicTacToeContent />}
+
     </main>
   )
 }

@@ -18,10 +18,6 @@ export default function HomeGame() {
         }
       </div>
     </div>
-
-    <Chat
-      socket={socket}
-      idRoom={idRoom}
-      isGlobal={true} />
+    <Chat socket={socket} idRoom={idRoom} isGlobal={true} />
   </div>
 }
