@@ -1,6 +1,9 @@
 import ReactDOM from 'react-dom'
+import { useContextGame } from '../../context/GameContext'
 
-export default function ModelRoom({ handleChangeRoom, handleEnterDoom, roomEnter, isCreate, setCreate }: any) {
+export default function ModelRoom() {
+  const {handleChangeRoom, handleEnterDoom, roomEnter, isCreate, setCreate } = useContextGame()
+  
   return ReactDOM.createPortal(<div className='modal-enter-room'>
     <div className='close-room' onClick={() => setCreate((last: any) => !last)}></div>
     <div className={`content-num-sala`}>

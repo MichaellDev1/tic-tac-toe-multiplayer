@@ -1,30 +1,20 @@
 import { useEffect, useState } from 'react'
 import Square from '../Square'
-
 import Chat from '../Chat';
 import { winningPositions } from '../../utils/positionsWinner';
-
 import winSoundEffect from '../../../asset/sound/win.mp3'
 import gameOverSound from '../../../asset/sound/gameover.mp3'
-
-import { Socket } from 'socket.io-client';
 import ModalWinner from '../ModalWinner';
+import { useContextGame } from '../../context/GameContext';
+import ButtonBack from '../ButtonBack';
 
-interface Props {
-  socket: Socket,
-  idRoom: string | null
-  player: string | ''
-  setBoards: React.Dispatch<React.SetStateAction<any[]>>,
-  boards: Array<null | string>
-  handleExitRoom: Function
-}
-
-export default function TicTacToeContent({ socket, idRoom, player, boards, setBoards, handleExitRoom }: Props) {
+export default function TicTacToeContent() {
   const [turn, setTurn] = useState<string>('x')
   const [win, setWin] = useState<null | string>(null)
   const [empate, setEmpate] = useState<boolean>(false)
+  const { socket, idRoom, player, boards, setBoards, handleExitRoom } = useContextGame()
 
-  const soundActive = (url: string) => {
+  const soundActive = (url: string): Promise<void> => {
     const gameSound = new Audio(url)
     return gameSound.play()
   }
@@ -35,28 +25,24 @@ export default function TicTacToeContent({ socket, idRoom, player, boards, setBo
         && boardsVerify[a] == boardsVerify[b]
         && boardsVerify[b] == boardsVerify[c]) {
 
-        if (player == boardsVerify[a])
-          soundActive(winSoundEffect)
-        else
-          soundActive(gameOverSound)
-        return setWin(boardsVerify[a])
+        player == boardsVerify[a]
+          ? soundActive(winSoundEffect)
+          : soundActive(gameOverSound)
 
+        return setWin(boardsVerify[a])
       }
 
-      if (!boardsVerify.includes(null))
-        return setEmpate(true)
-
+      if (!boardsVerify.includes(null)) return setEmpate(true)
     })
   }
 
   useEffect(() => {
-    socket.on('gameEnemy', (turnSelected: string, newSquares) => {
+    socket.on('gameEnemy', (turnSelected: string, newSquares: Array<null | string>) => {
       setTurn(turnSelected)
       verifyWin(newSquares)
       setBoards(newSquares);
     })
   }, [socket])
-
 
   const handlePlayBoard = (inx: number) => {
     if (boards[inx] == null && turn == player && !win) {
@@ -81,46 +67,29 @@ export default function TicTacToeContent({ socket, idRoom, player, boards, setBo
     setWin(null)
   }
 
-  return <div className='content-chat-more-game'>
-    <div>
-      <h3 className='turn-selected'>
-        {!win
-          ? player == turn
-            ? 'Your turn'
-            : 'Enemy turn'
-          : null
-        }
-      </h3>
+  return (
+    <div className='content-chat-more-game'>
 
-      <div className='content-boards'>
-        {
-          boards.map((board, inx) =>
-            <Square
-              handlePlayBoard={handlePlayBoard}
-              value={boards[inx]} inx={inx} />)
-        }
-      </div>
-
-      <div className='content-reset-and-game-turn'>
-        <div className='content-info-turn'>
-          <span>You: <span className={player == 'x' ? 'player-cross' : 'player-circle'}>{player}</span></span>
-          <span> Enemy: <span className={player == 'x' ? 'player-circle' : 'player-cross'}>{player == 'x' ? 'O' : 'X'}</span></span>
+      <div>
+        <h3 className='turn-selected'>{!win ? player == turn ? 'Your turn' : 'Enemy turn' : null}</h3>
+        <div className='content-boards'>
+          {boards.map((board: Array<null | string>, inx: number) =>
+            <Square key={inx} handlePlayBoard={handlePlayBoard} value={boards[inx]} inx={inx} />)}
         </div>
 
-        <ModalWinner
-          empate={empate}
-          handleResetGame={handleResetGame}
-          player={player}
-          win={win}
-          handleExitRoom={handleExitRoom} />
-
+        <div className='content-reset-and-game-turn'>
+          <div className='content-info-turn'>
+            <span>You: <span className={player == 'x' ? 'player-cross' : 'player-circle'}>{player}</span></span>
+            <span> Enemy: <span className={player == 'x' ? 'player-circle' : 'player-cross'}>{player == 'x' ? 'O' : 'X'}</span></span>
+          </div>
+          <div className='content-button-back'>
+            <ButtonBack />
+          </div>
+        </div>
+        <ModalWinner empate={empate} handleResetGame={handleResetGame} player={player} win={win} handleExitRoom={handleExitRoom} />
       </div>
+
+      <Chat socket={socket} idRoom={idRoom} isGlobal={false} />
     </div>
-
-    <Chat
-      socket={socket}
-      idRoom={idRoom}
-      isGlobal={false} />
-
-  </div>
+  )
 }

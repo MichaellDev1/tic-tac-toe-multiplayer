@@ -281,7 +281,14 @@ ul::-webkit-scrollbar-thumb {
 
 .content-reset-and-game-turn .content-info-turn {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content-button-back {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-top: 10px;
 }
 
 .content-info-turn span {
@@ -433,4 +440,19 @@ ul::-webkit-scrollbar-thumb {
     .btn-open-chat {
         top: -225px;
     }
+}
+
+.background-svg {
+    width: 100%;
+    min-height: 118vh;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
+}
+
+.content-loading-game {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
